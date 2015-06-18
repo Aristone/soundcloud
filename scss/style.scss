@@ -88,3 +88,36 @@ img {
 /**
  * YOUR CODE HERE
  */
+
+a{
+    display: inline-block;
+    vertical-align: left;
+}
+ .container{
+    width: 800px;
+    display: inline-block;    
+ }
+.soundbar{
+    display: inline-block;
+    vertical-align: right;   
+    height: 19%;
+    padding: 3% 19% 3% 20.5%;
+    float:right;
+     border: 1px solid  #aaaaaa;    
+}
+.art{
+
+    display: inline-block;
+    vertical-align: left;
+    padding: 0% 20% 10% 0%;
+    border: 1px solid  #aaaaaa;  
+}    
+.bottom_bar {
+    height: 100px;
+    width: 100%;
+    margin: 0% 0% 0% 0%;
+    display: inline-block;
+    border: 1px solid  #aaaaaa;   
+}
+
+
