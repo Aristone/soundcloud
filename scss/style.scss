@@ -98,12 +98,24 @@ a{
     display: inline-block;    
  }
 .soundbar{
+    position: absolute;
     display: inline-block;
     vertical-align: right;   
-    height: 19%;
-    padding: 3% 19% 3% 20.5%;
+    height: 9%;
+    padding: 0px 0px 0px 0px;
     float:right;
-     border: 1px solid  #aaaaaa;    
+    border: 1px solid  #aaaaaa; 
+    overflow: hidden;   
+}
+
+.sounds{
+    position: absolute;
+    display: block;  
+    height: 19%;
+    padding: 0px 50px 33px 80.5px;
+    right: 250px;
+    border: 1px solid  #aaaaaa;
+    overflow: hidden;
 }
 .art{
 

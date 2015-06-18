@@ -34,19 +34,14 @@ var Promise = require('es6-promise').Promise
 //   alert("Latest track: " + tracks[0].title);
 // });
 
-  SC.initialize({
-    client_id: "5b8f3d60c3820482bc3fdef04ffdde6f",
-    redirect_uri: "http://example.com/callback",
-  });
+  
 
 
-
-
+var $ = require('jquery')
 var Backbone = require('backbone')
 var React = require('react')
 var apikey = '5b8f3d60c3820482bc3fdef04ffdde6f'
 var qs = (s, d) => (d || document).querySelector(s)
-
 
 var SoundcloudCollection = Backbone.Collection.extend({
     url: `https://api.soundcloud.com/tracks?client_id=${apikey}&limit=1`
@@ -57,14 +52,22 @@ class SoundcloudItem extends React.Component {
         super(props)
     }
     render(){
-        var url = this.props.item.get('permalink_url'),
+            
+            var music_url = 'https://api.soundcloud.com/tracks.json?client_id=5b8f3d60c3820482bc3fdef04ffdde6f';
+             if(!(music_url)){ 
+                music_url = 'https://api.soundcloud.com/tracks/210097699.json?client_id=5b8f3d60c3820482bc3fdef04ffdde6f';
+            }
+
+            var url = this.props.item.get('permalink_url'),
             artwork_url = this.props.item.get('artwork_url');
             console.log(artwork_url);
             if(!(artwork_url)){ 
                 artwork_url = 'https://developers.soundcloud.com/assets/powered_by_large_black-64fec369eec44b7ee75119f288c6d010.png';
             }
             // img = artwork_url ? (<img src={artwork_url} />) : '';
-            var img = <img src={artwork_url} size= "200"  />
+            var img = <img src={artwork_url} size= "200" />
+
+            var sounds = <div src={sounds}> </div>
 
             var track_title = this.props.item.get('title'),
             title = this.props.item.get('title');
@@ -72,6 +75,8 @@ class SoundcloudItem extends React.Component {
             var favorites = this.props.item.get('favoritings_count'),
             favorites = this.props.item.get('favoritings_count');
 
+            var sounds = this.props.item.get('sounds'),
+            sounds = this.props.item.get('sounds');
 
             var username = this.props.item.get('user').username,
             username = this.props.item.get('user').username;
@@ -79,19 +84,21 @@ class SoundcloudItem extends React.Component {
             var plays = this.props.item.get('playback_count'),
             plays = this.props.item.get('playback_count');
 
+            var stream_url = this.props.item.get('stream_url'),
+            stream_url = this.props.item.get('stream_url');
             // var player = this.props.item.get()
 
         return (
             <div>
                 <div className="art" >
-                    <a href={url}>{img}</a>
+                    <a src={url}>{img}</a>
                 </div>
                     <div className="soundbar"> 
                     {track_title} {username} 
                 </div>
-                //     <div player="player">
-                //     {          }
-                // </div>    
+                    <div className="sounds">
+                     {sounds} {stream_url}
+                </div>    
                     <div className="bottom_bar"> 
                     {plays} {favorites} 
                 </div>
@@ -114,6 +121,36 @@ class SoundcloudItems extends React.Component {
     }
 }
 
+var collection = new SoundcloudCollection()
+React.render(<SoundcloudItems  items={collection} />, qs('.container'))
+collection.fetch().then(() => {
+    console.log(collection)
+})
+
+// var sc_url = `https://api.soundcloud.com/tracks?client_id=${apikey}`
+//             var sound_url = 'https://api.soundcloud.com/tracks.json?client_id=5b8f3d60c3820482bc3fdef04ffdde6f';
+//             $.getJSON(url, function(tracks) {
+//             $(tracks).each(function(track) {
+    
+//   }
+// })
+// SC.initialize({
+//   client_id: 'ff508288606264cb4f1469b5ba4f23e8'
+// })
+
+// var SC_Collection = Backbone.Collection.extend({
+//     query: '',
+
+//     url: function(){
+//         return `${sc_url}&q=${this.query}`
+//     }
+// })
+
+// var collection = new SC_Collection()
+// collection.fetch().then(() => {
+//     console.log(collection.toJSON())
+// })
+
 // class Bottom_bar extends React.Component {
 //        constructor(props){
 //         super(props)
@@ -130,10 +167,3 @@ class SoundcloudItems extends React.Component {
 //         )
 //     }
 // }
-
-var collection = new SoundcloudCollection()
-React.render(<SoundcloudItems  items={collection} />, qs('.container'))
-collection.fetch().then(() => {
-    console.log(collection)
-})
-
