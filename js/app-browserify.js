@@ -47,6 +47,14 @@ var SoundcloudCollection = Backbone.Collection.extend({
     url: `https://api.soundcloud.com/tracks?client_id=${apikey}&limit=1`
 })
 
+SC.initialize({});
+
+
+
+SC.stream("/tracks/293", function(sound){
+  sound.play();
+});
+
 class SoundcloudItem extends React.Component {
     constructor(props){
         super(props)
