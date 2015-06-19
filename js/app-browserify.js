@@ -24,79 +24,80 @@ SC.initialize({});
 class SoundcloudItem extends React.Component {
     constructor(props){
         super(props)
+        this.state = {
+            sound:null,
+            someNumber:5
+        }
     }
+
+    handleClick() {
+        var self = SoundcloudItem
+        console.log(self.state)
+    }
+
+
     render(){
-            // var l={}
-            SC.stream("210097699", function(sound){
-              sound.play();
-              // l.h=5
-               // function play(){
-               //      sound.play();
-               //      this
+        SC.stream("210097699", function(sound){
+         
+            sound.play();
 
-               // }
-               // function pause(){
-               //      sound.pause();
-               // }
-               // function volume(){
-               //      setVolume(volume);
-               // }
+            // {
+            // 'sound': sound
+            // }
+            // setState
 
-              // this.state.pause
-              // if this.state.play
-              // sound.pause();
-              // sound.toggle();
-              // setVolume(volume);
-              // next();
-              // prev();
-              // skip(soundIndex);
-            });
-// console.log(l)
-// debugger
-            var music_url = 'https://api.soundcloud.com/tracks.json?client_id=5b8f3d60c3820482bc3fdef04ffdde6f';
-             if(!(music_url)){ 
-                music_url = 'https://api.soundcloud.com/tracks/210097699.json?client_id=5b8f3d60c3820482bc3fdef04ffdde6f';
-            }
+        });
 
-            var url = this.props.item.get('permalink_url'),
-            artwork_url = this.props.item.get('artwork_url');
-            console.log(artwork_url);
-            if(!(artwork_url)){ 
-                artwork_url = 'https://developers.soundcloud.com/assets/powered_by_large_black-64fec369eec44b7ee75119f288c6d010.png';
-            }
-            // img = artwork_url ? (<img src={artwork_url} />) : '';
-            var img = <img src={artwork_url} size= "250" />
+        window. music_url = 'https://api.soundcloud.com/tracks.json?client_id=5b8f3d60c3820482bc3fdef04ffdde6f';
+         if(!(music_url)){ 
+            music_url = 'https://api.soundcloud.com/tracks/210097699.json?client_id=5b8f3d60c3820482bc3fdef04ffdde6f';
+        }
 
-            var sounds = <div src={sounds}> </div>
+        var url = this.props.item.get('permalink_url'),
+        artwork_url = this.props.item.get('artwork_url');
+        console.log(artwork_url);
+        if(!(artwork_url)){ 
+            artwork_url = 'https://developers.soundcloud.com/assets/powered_by_large_black-64fec369eec44b7ee75119f288c6d010.png';
+        }
+        // img = artwork_url ? (<img src={artwork_url} />) : '';
+        var img = <img src={artwork_url} size= "250" />
 
-            var track_title = this.props.item.get('title'),
-            title = this.props.item.get('title');
+        var sounds = <div src={sounds}> </div>
 
-            var favorites = this.props.item.get('favoritings_count'),
-            favorites = this.props.item.get('favoritings_count');
+        var track_title = this.props.item.get('title'),
+        title = this.props.item.get('title');
 
-            var sounds = this.props.item.get('sounds'),
-            sounds = this.props.item.get('sounds');
+        var favorites = this.props.item.get('favoritings_count'),
+        favorites = this.props.item.get('favoritings_count');
 
-            var username = this.props.item.get('user').username,
-            username = this.props.item.get('user').username;
+        var sounds = this.props.item.get('sounds'),
+        sounds = this.props.item.get('sounds');
 
-            var plays = this.props.item.get('playback_count'),
-            plays = this.props.item.get('playback_count');
+        var username = this.props.item.get('user').username,
+        username = this.props.item.get('user').username;
 
-            var stream_url = this.props.item.get('stream_url'),
-            stream_url = this.props.item.get('stream_url');
-            // var player = this.props.item.get()
+        var plays = this.props.item.get('playback_count'),
+        plays = this.props.item.get('playback_count');
+
+        var stream_url = this.props.item.get('stream_url'),
+        stream_url = this.props.item.get('stream_url');
+        // var player = this.props.item.get()
 
         return (
             <div>
                 <div className="art" >
+
                     <a src={url}>{img}</a>
                 </div>
                     <div className="soundbar"> 
                     {track_title} {username} 
                 </div>
-                    <div className="sounds"><button className="play">play</button><button className="pause">pause</button>
+                    <div className="sounds">
+                    
+                        <button onClick={this.handleClick} className="play">play</button>
+                    
+                        <button onClick={this.handleClick} className="pause">pause</button>
+
                      {sounds} {stream_url}
                 </div>    
                     <div className="bottom_bar"> 
