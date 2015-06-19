@@ -7,36 +7,6 @@ require("es5-shim")
 require("babel/register")
 
 var Promise = require('es6-promise').Promise
-// just Node?
-// var fetch = require('node-fetch')
-// Browserify?
-// require('whatwg-fetch') //--> not a typo, don't store as a var
-
-// other stuff that we don't really use in our own code
-// var Pace = require("../bower_components/pace/pace.js")
-
-// require your own libraries, too!
-// var Router = require('./app.js')
-
-// window.addEventListener('load', app)
-
-// function app() {
-    // start app
-    // new Router()
-// }
-
-// SC.initialize({
-//   client_id: "5b8f3d60c3820482bc3fdef04ffdde6f",
-//   redirect_uri: "http://example.com/callback",
-// });
-
-// SC.get("/users/{210097699}/tracks", {limit: 1}, function(tracks){
-//   alert("Latest track: " + tracks[0].title);
-// });
-
-  
-
-
 var $ = require('jquery')
 var Backbone = require('backbone')
 var React = require('react')
@@ -51,16 +21,38 @@ SC.initialize({});
 
 
 
-SC.stream("/tracks/293", function(sound){
-  sound.play();
-});
-
 class SoundcloudItem extends React.Component {
     constructor(props){
         super(props)
     }
     render(){
-            
+            // var l={}
+            SC.stream("210097699", function(sound){
+              sound.play();
+              // l.h=5
+               // function play(){
+               //      sound.play();
+               //      this
+
+               // }
+               // function pause(){
+               //      sound.pause();
+               // }
+               // function volume(){
+               //      setVolume(volume);
+               // }
+
+              // this.state.pause
+              // if this.state.play
+              // sound.pause();
+              // sound.toggle();
+              // setVolume(volume);
+              // next();
+              // prev();
+              // skip(soundIndex);
+            });
+// console.log(l)
+// debugger
             var music_url = 'https://api.soundcloud.com/tracks.json?client_id=5b8f3d60c3820482bc3fdef04ffdde6f';
              if(!(music_url)){ 
                 music_url = 'https://api.soundcloud.com/tracks/210097699.json?client_id=5b8f3d60c3820482bc3fdef04ffdde6f';
@@ -73,7 +65,7 @@ class SoundcloudItem extends React.Component {
                 artwork_url = 'https://developers.soundcloud.com/assets/powered_by_large_black-64fec369eec44b7ee75119f288c6d010.png';
             }
             // img = artwork_url ? (<img src={artwork_url} />) : '';
-            var img = <img src={artwork_url} size= "200" />
+            var img = <img src={artwork_url} size= "250" />
 
             var sounds = <div src={sounds}> </div>
 
@@ -104,7 +96,7 @@ class SoundcloudItem extends React.Component {
                     <div className="soundbar"> 
                     {track_title} {username} 
                 </div>
-                    <div className="sounds">
+                    <div className="sounds"><button className="play">play</button><button className="pause">pause</button>
                      {sounds} {stream_url}
                 </div>    
                     <div className="bottom_bar"> 
